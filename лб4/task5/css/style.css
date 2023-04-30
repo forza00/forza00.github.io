@@ -1,0 +1,21 @@
+table {
+    width: 560px;
+    height: 560px;
+   border-style: groove;
+    border-spacing: 0;
+  }
+  td {
+    width: 70px;
+    text-align: center;
+    font-size:50px;
+    height: 70px;
+    background-color: white;
+  }
+  .firstRow>td:nth-child(even) {
+    background-color: #808080;
+    border: none;
+  }
+  .secRow>td:nth-child(odd) {
+    background-color: grey;
+    border: none;
+  }
