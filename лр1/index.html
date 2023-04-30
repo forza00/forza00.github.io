@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Перехідник</title>
+    <style>
+      .ramka-3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 30px auto;
+    width: 200px;
+    height: 200px;
+    font-size: 24px;
+    font-family: 'Roboto', sans-serif; 
+    box-shadow: inset 0 0 0 1px #1E2939;    
+} 
+.ramka-3::before, 
+.ramka-3::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: '';
+    z-index: -1;
+    margin: -5%;
+    box-shadow: inset 0 0 0 6px #f88a62;
+    animation: anim-ramka-3 8s linear infinite; 
+}
+.ramka-3::before {
+    animation-delay: -4s;
+}
+.ramka-3:hover::after, 
+.ramka-3:hover::before {
+    background-color:#f5ab91;
+}
+@keyframes anim-ramka-3 {
+    0%, 100% {
+        clip: rect(0px, 220px, 6px, 0px);
+    }
+    25% {
+        clip: rect(0px, 6px, 220px, 0px);
+    }
+    50% {
+        clip: rect(218px, 220px, 220px, 0px);
+    }
+    75% {
+        clip: rect(0px, 220px, 220px, 218px);
+    }
+}
+a:link a:visited a:hover{
+   color:#1e2939;
+  
+}
+a:active{
+  color:#f88a62;
+}
+    </style>
+</head>
+<body>
+    <div class="ramka-3"><a href="https://github.com/forza00/forza00.github.io/blob/main/лр1/task%201/index.html">Task1</a></div>
+    <div class="ramka-3"><a href="https://github.com/forza00/forza00.github.io/blob/main/лр1/task%202/cossacs.html">Task2</a></div>
+</body>
+</html>
