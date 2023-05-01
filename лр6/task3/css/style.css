@@ -1,0 +1,76 @@
+.background {
+    max-width: 420px;
+    height: 640px;
+    border: 3px solid #5f9ea0;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+.wrap {
+    margin: 0;
+    padding: 20px 15px;
+}
+
+.casio {
+    background-color: #5f9ea0;
+    color: white;
+    margin-top: 20px;
+    text-align: end;
+    font-size: 30px;
+    padding: 13px 15px;
+}
+
+.input {
+    width: 390px;
+    height: 60px;
+    box-sizing: border-box;
+    border: 3px solid #5f9ea0;
+    border-radius: 10px;
+    text-align: end;
+    font-size: 40px;
+    color: #5f9ea0;
+    margin-bottom: 16px;
+}
+
+.result {
+    width: 136px;
+    height: 50px;
+    background-color: #5f9ea0;
+    float: right;
+}
+
+.buttons {
+    margin-top: 50px;
+}
+
+button {
+    width: 80px;
+    height: 80px;
+    border: 3px solid #5f9ea0;
+    border-radius: 10px;
+    background-color: white;
+    font-size: 30px;
+    color: #5f9ea0;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #b9e1e2;
+    cursor: pointer;
+}
+
+.column button {
+    display:block;
+}
+
+.column {
+    float: left;
+    margin-right: 20px;
+}
+
+.column:last-child {
+    margin-right: 0;
+}
+
+/* ----------------------- */
+
