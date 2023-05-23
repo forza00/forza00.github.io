@@ -1,26 +1,53 @@
 table{
     float: left;
-    width: 400px;
-    height: 100px;
+    width: 800px;
+    height: 300px;
 }
 
-span{
-   
-}
 
 .imp{
-    background: #8bc8f0;
+    background: rgb(9,166,19);
+    background: linear-gradient(90deg, rgba(9,166,19,1) 0%, rgba(60,121,9,1) 35%, rgba(74,255,0,1) 100%);
     color: aliceblue;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: x-small;
-    width: 150px;
-    height: 30px;
+    font-size: 15px;
+    width: 250px;
+    height: 50px;
     text-align: center;
 }
 
 .pler{
-    background: rgb(180, 226, 243);
+    background: lightgreen;
     width: 350px;
     height: 40px;
     text-align:center;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.fre{
+ background: white;
+ font-size: 13px;
+ font-size: 15px;
+ width: 250px;
+ height: 50px;
+ text-align:center;
+ font-family: sans-serif;
+  font-weight: bold;
+}
+.lik{
+    background: lightgreen;
+    width: 350px;
+    height: 40px;
+    text-align:center;
+    color:#158f1d;
+    font-weight: bold;
+}
+
+.price{
+  text-align:center;
+  font-weight: bold;
+  font-size: 30px;
+  color:#19da25;
+  text-shadow: 1px 1px 2px green;
 }
