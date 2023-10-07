@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Данилів Євген ПІ-20-02</title>
+    <script>
+        // Функція яка взаємодіє з користувачем та отримує імена та прізвища студентів
+        function getStudentNames() {
+            // Запитуємо кількість учнів у групі
+            var numberOfStudents = parseInt(prompt('Введіть кількість учнів у групі:'));
+            
+            // Перевірка
+            if (!isNaN(numberOfStudents) && numberOfStudents > 0) {
+                // Створюємо пустий масив для зберігання імен і прізвищ
+                var studentList = [];
+                
+                // Запитуємо імена та прізвища для кожного учня та додаємо їх до масиву
+                for (var i = 1; i <= numberOfStudents; i++) {
+                    var studentName = prompt('Введіть імя та прізвище учня ' + i + ':');
+                    studentList.push(studentName);
+                }
+                
+                // Виводимо список студентів у вікні браузера
+                document.write('<h2>Список студентів:</h2>');
+                for (var j = 0; j < studentList.length; j++) {
+                    document.write('<p>' + studentList[j] + '<p>');
+                }
+            } else {
+                // Виводимо повідомлення про помилку якщо кількість учнів некоректна
+                alert('Введіть коректну кількість учнів (більше 0).');
+            }
+        }
+    </script>
+</head>
+<body >
+    <h1>Список студентів</h1>
+    <hr>
+    <!-- Кнопка яка викликає функцію getStudentNames() при кліку -->
+    <button onclick="getStudentNames();">Ввести імена студентів</button>
+</body>
+</html>

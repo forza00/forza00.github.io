@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Данилів Євген ПІ-20-02</title>
+    <script>
+        // Функція яка взаємодіє з користувачем + визначає пору року
+        function findSeason() {
+            // Зчитуємо номер місяця введений користувачем
+            var monthNumber = parseInt(prompt('Введіть номер місяця (1-12):'));
+            
+            // Перевірка
+            if (!isNaN(monthNumber) && monthNumber >= 1 && monthNumber <= 12) {
+                // Визначаємо пору року на основі номера місяця
+                var season = '';
+                switch (monthNumber) {
+                    case 12:case 1:case 2:season = 'зима';
+                        break;
+                    case 3:case 4:case 5:season = 'весна';
+                        break;
+                    case 6:case 7:case 8:season = 'літо';
+                        break;
+                    case 9:case 10:case 11:season = 'осінь';
+                        break;
+                }
+                
+                // Виводимо результат відповідно до пори року
+                alert('Це ' + season + '.');
+            } else {
+                // Виводимо повідомлення про помилку, якщо номер місяця некоректний
+                alert('Будь ласка, введіть коректний номер місяця (від 1 до 12).');
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Визначення пори року</h1>
+    <hr>
+    <!-- Кнопка, яка викликає функцію findSeason() при кліку -->
+    <button onclick="findSeason();">Визначити пору року</button>
+</body>
+</html>
