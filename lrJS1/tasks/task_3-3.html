@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Данилів Євген ПІ-20-02</title>
+    <script>
+        // Функція яка викликається при натисканні кнопки "ОК" у діалоговому вікні
+        function showAlert() {
+            alert('Hello, world!');
+        }
+        
+        // Функція яка показує діалогове вікно
+        function showConfirm() {
+            var result = confirm('Натисніть "ОК", щоб вивести "Hello, world!"');
+            
+            // Перевіряємо результат діалогового вікна confirm
+            if (result) {
+                showAlert(); // Викликаємо функцію showAlert яка виводить фразу
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Hello, world після натискання кнопки</h1>
+    <hr>
+    
+    <!-- Кнопка яка викликає функцію showConfirm() при кліку -->
+    <button onclick="showConfirm();">Натисніть для показу діалогового вікна</button>
+</body>
+</html>
