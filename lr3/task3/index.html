@@ -4,123 +4,89 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Данилів</title>
+    <title>Перевірка таблиці множення</title>
     <style>
-        #rotator {
-            position: relative;
-            width: 500px;
-            height: 300px;
-            overflow: hidden;
-        }
-
-        #photo {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        #info {
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        #navigation {
-            text-align: center;
-            margin-top: 10px;
+        .option {
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
 
-    <div id="rotator"></div>
-    <div id="info"></div>
-    <div id="navigation">
-        <button onclick="prevImage()">Назад</button>
-        <span id="currentImage">1</span>/<span id="totalImages">0</span>
-        <button onclick="nextImage()">Вперед</button>
-    </div>
+    <h1>Перевірка таблиці множення</h1>
+
+    <p id="score">Загальний рахунок: 0</p>
+
+    <p id="task">Завдання:</p>
+
+    <form id="options"></form>
+
+    <button onclick="checkAnswer()">Перевірити</button>
+
+    <p id="result"></p>
+
+    <button onclick="generateTask()">Наступне завдання</button>
 
     <script>
-        let imagesArray = [
-            {
-                path: 'images/001.jpg',
-                title: 'ауд. 108',
-                description: 'Викладацька аудиторія'
-            },
-            {
-                path: 'images/002.jpg',
-                title: 'ауд. 103-а',
-                description: 'Лабораторія для студентів'
-            },
-            {
-                path: 'images/003.jpg',
-                title: 'ауд. 104',
-                description: 'Лабораторія для студентів'
+        var score = 0;
+        var currentTask;
+
+        function generateTask() {
+            var num1 = Math.floor(Math.random() * 10) + 1;
+            var num2 = Math.floor(Math.random() * 10) + 1;
+            currentTask = num1 * num2;
+
+            document.getElementById('task').innerHTML = 'Завдання: ' + num1 + ' * ' + num2;
+            document.getElementById('result').innerHTML = '';
+            clearOptions();
+
+            var correctOptionIndex = Math.floor(Math.random() * 4);
+            for (var i = 0; i < 4; i++) {
+                var option = document.createElement('div');
+                option.className = 'option';
+                var radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = 'answer';
+                radio.value = (i === correctOptionIndex) ? currentTask : generateIncorrectOption(currentTask);
+                option.appendChild(radio);
+                option.innerHTML += radio.value;
+                document.getElementById('options').appendChild(option);
             }
-        ];
-
-        let currentIndex = 0;
-        let totalImages = imagesArray.length;
-        let rotator = document.getElementById('rotator');
-        let info = document.getElementById('info');
-        let currentImageText = document.getElementById('currentImage');
-        let totalImagesText = document.getElementById('totalImages');
-
-        function initPhotoRotator(divId, images) {
-            rotator.innerHTML = '';
-            totalImages = images.length;
-
-            for (let i = 0; i < totalImages; i++) {
-                let img = document.createElement('img');
-                img.src = images[i].path;
-                img.alt = images[i].title;
-                img.style.display = (i === 0) ? 'block' : 'none';
-                rotator.appendChild(img);
-            }
-
-            updateInfo();
         }
 
-        function updateInfo() {
-            currentImageText.textContent = currentIndex + 1;
-            totalImagesText.textContent = totalImages;
-
-            let currentImage = imagesArray[currentIndex];
-            info.innerHTML = `<h3>${currentImage.title}</h3><p>${currentImage.description}</p>`;
+        function clearOptions() {
+            document.getElementById('options').innerHTML = '';
         }
 
-        function nextImage() {
-            if (currentIndex < totalImages - 1) {
-                currentIndex++;
+        function generateIncorrectOption(correctAnswer) {
+            var incorrectOption;
+            do {
+                incorrectOption = Math.floor(Math.random() * 100);
+            } while (incorrectOption === correctAnswer);
+
+            return incorrectOption;
+        }
+
+        function checkAnswer() {
+            var selectedOption = document.querySelector('input[name="answer"]:checked');
+
+            if (!selectedOption) {
+                document.getElementById('result').innerHTML = 'Будь ласка, оберіть варіант відповіді.';
+                return;
+            }
+
+            if (parseInt(selectedOption.value) === currentTask) {
+                score++;
+                document.getElementById('result').innerHTML = 'Правильно!';
             } else {
-                currentIndex = 0;
+                document.getElementById('result').innerHTML = 'Помилка, правильна відповідь: ' + currentTask;
             }
 
-            showCurrentImage();
+            document.getElementById('score').innerHTML = 'Загальний рахунок: ' + score;
+            generateTask();
         }
 
-        function prevImage() {
-            if (currentIndex > 0) {
-                currentIndex--;
-            } else {
-                currentIndex = totalImages - 1;
-            }
-
-            showCurrentImage();
-        }
-
-        function showCurrentImage() {
-            let images = rotator.getElementsByTagName('img');
-            for (let i = 0; i < totalImages; i++) {
-                images[i].style.display = 'none';
-            }
-
-            images[currentIndex].style.display = 'block';
-            updateInfo();
-        }
-
-        initPhotoRotator('rotator', imagesArray);
+        generateTask();
     </script>
 
 </body>
