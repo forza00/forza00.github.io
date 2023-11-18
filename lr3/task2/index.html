@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Данилів</title>
+</head>
+<body>
+    <p id="score">Загальний рахунок: 0</p>
+
+    <button onclick="generateTask()">Наступне завдання</button>
+
+    <p id="task">Завдання:</p>
+
+    <input type="text" id="answer" placeholder="Введіть відповідь">
+
+    <button onclick="checkAnswer()">Перевірити</button>
+
+    <p id="result"></p>
+
+    <script>
+        var score = 0;
+        var currentTask;
+
+        function generateTask() {
+            var num1 = Math.floor(Math.random() * 10) + 1;
+            var num2 = Math.floor(Math.random() * 10) + 1;
+            currentTask = num1 * num2;
+
+            document.getElementById('task').innerHTML = 'Завдання: ' + num1 + ' * ' + num2;
+            document.getElementById('result').innerHTML = '';
+            document.getElementById('answer').value = '';
+        }
+
+        function checkAnswer() {
+            var userAnswer = document.getElementById('answer').value;
+
+            if (userAnswer === '') {
+                document.getElementById('result').innerHTML = 'Будь ласка, введіть відповідь.';
+                return;
+            }
+
+            if (parseInt(userAnswer) === currentTask) {
+                score++;
+                document.getElementById('result').innerHTML = 'Правильно!';
+            } else {
+                document.getElementById('result').innerHTML = 'Неправильно. Правильна відповідь: ' + currentTask;
+            }
+
+            document.getElementById('score').innerHTML = 'Загальний рахунок: ' + score;
+        }
+
+        // Генеруємо перше завдання при завантаженні сторінки
+        generateTask();
+    </script>
+</body>
+</html>

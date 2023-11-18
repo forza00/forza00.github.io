@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Данилів</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #rotator-container {
+            position: relative;
+            width: 70%;
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+
+        #rotator {
+            width: 100%;
+            height: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #rotator-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .rotator-image {
+            width: 100%;
+            flex: 0 0 auto;
+            margin: 0 10px;
+            box-sizing: border-box;
+        }
+
+        #info {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        #navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+        }
+
+        .navigation-btn {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #2c2e2d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .navigation-btn:hover {
+            background-color: #454ba0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="rotator-container">
+    <div id="info">
+        <p id="imageCounter">Фотографія 1/3</p>
+        <div id="rotator">
+            <div id="rotator-inner"></div>
+        </div>
+        <p id="imageText"><br></p>
+    </div>
+    <div id="navigation">
+        <button class="navigation-btn" onclick="prevImage()">←</button>
+        <button class="navigation-btn" onclick="nextImage()">→</button>
+    </div>
+</div>
+
+<script>
+    let imagesArray = [
+        {
+            path: 'images/001.jpg',
+            title: 'Iphone 15 pro',
+            description: '256 gb '
+        },
+        {
+            path: 'images/002.jpg',
+            title: 'Samsung Galaxy S23 Ultra',
+            description: '5G 12/512 Lavender 1 Sim'
+        },
+        {
+            path: 'images/003.jpg',
+            title: 'ауд. 104Google Pixel 7 Pro',
+            description: '12/128GB Obsidian'
+        }
+    ];
+
+    let currentIndex = 0;
+    let totalImages = imagesArray.length;
+    let rotator = document.getElementById('rotator-inner');
+    let imageCounter = document.getElementById('imageCounter');
+    let imageText = document.getElementById('imageText');
+
+    function initPhotoRotator(divId, images) {
+        totalImages = images.length;
+
+        for (let i = 0; i < totalImages; i++) {
+            let img = document.createElement('img');
+            img.src = images[i].path;
+            img.alt = images[i].title;
+            img.classList.add('rotator-image');
+            rotator.appendChild(img);
+        }
+
+        updateInfo();
+    }
+
+    function updateInfo() {
+        imageCounter.textContent = `Фотографія ${currentIndex + 1}/${totalImages}`;
+        let currentImage = imagesArray[currentIndex];
+        imageText.innerHTML = `${currentImage.title}<br>${currentImage.description}`;
+    }
+
+    function nextImage() {
+        if (currentIndex < totalImages - 1) {
+            currentIndex++;
+        } else {
+            currentIndex = 0;
+        }
+
+        showCurrentImage();
+    }
+
+    function prevImage() {
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = totalImages - 1;
+        }
+
+        showCurrentImage();
+    }
+
+    function showCurrentImage() {
+        rotator.style.transform = `translateX(-${currentIndex * 100}%)`;
+        updateInfo();
+    }
+
+    initPhotoRotator('rotator', imagesArray);
+</script>
+
+</body>
+</html>
