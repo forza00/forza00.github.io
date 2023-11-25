@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Данилів</title>
+</head>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    #message-container {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: flex-end;
+      max-width: 300px;
+      margin: 10px;
+    }
+
+    .message {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #fff;
+      animation: slideIn 0.5s ease-out;
+      transition: opacity 0.5s ease-out; 
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="message-container">
+   
+  </div>
+
+  <script>
+    function hideMessage(button) {
+      const message = button.parentNode;
+      message.style.animation = 'none'; 
+      message.style.opacity = '0'; 
+      setTimeout(() => {
+        message.style.display = 'none';
+      }, 500); // Затримка видалення
+    }
+
+    function showMessage(text) {
+      const container = document.getElementById('message-container');
+      const message = document.createElement('div');
+      message.className = 'message';
+      message.innerHTML = `${text} <button onclick="hideMessage(this)">Приховати</button>`;
+      container.appendChild(message);
+      //  плавність аміки
+      setTimeout(() => {
+        message.style.animation = 'slideIn 0.5s ease-out';
+      }, 0);
+    }
+
+    showMessage('Це перше повідомлення.');
+    showMessage('Це друге повідомлення.');
+    showMessage('Це третє повідомлення.');
+  </script>
+
+</body>
+</html>

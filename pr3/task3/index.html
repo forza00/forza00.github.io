@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Данилів</title>
+</head>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #field {
+      position: relative;
+      width: 50%;
+      height: 50%; 
+      background-color: #e0e0e0;
+      overflow: hidden;
+      border: solid 3px rgba(0, 0, 0, 0.2);
+    }
+
+    #ball {
+      position: absolute;
+      width: 5%; 
+      height: 10%; 
+      border-radius: 50%;
+      background-color: #3498db;
+      transition: transform 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="field" onclick="moveBall(event)">
+    <div id="ball"></div>
+  </div>
+
+  <script>
+    function moveBall(event) {
+      const field = document.getElementById('field');
+      const ball = document.getElementById('ball');
+
+      const fieldRect = field.getBoundingClientRect();
+
+      const mouseX = event.clientX - fieldRect.left;
+      const mouseY = event.clientY - fieldRect.top;
+
+      const clampedX = Math.min(fieldRect.width - ball.offsetWidth, Math.max(0, mouseX - ball.offsetWidth / 2));
+      const clampedY = Math.min(fieldRect.height - ball.offsetHeight, Math.max(0, mouseY - ball.offsetHeight / 2));
+
+      ball.style.transform = `translate(${clampedX}px, ${clampedY}px)`;
+    }
+  </script>
+
+</body>
+</html>
