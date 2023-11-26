@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Design Toolkit</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .tab {
+            display: none;
+        }
+
+        .tab.active {
+            display: block;
+        }
+
+        .tab-button {
+            margin-right: 10px;
+            padding: 8px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #container,
+        #fontContainer,
+        .br-container {
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .float-option {
+            float: left;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #3498db;
+            background-color: #3498db;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .float-option:hover {
+            transform: scale(1.1);
+        }
+
+        #output,
+        #fontOutput,
+        #brResultCode {
+            clear: both;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #333;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .block,
+        .br-block {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            padding: 10px;
+            display: inline-block;
+            border: 1px solid #333;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        #block1,
+        #block2 {
+            transition: float 0.3s;
+        }
+
+        #block1:hover,
+        #block2:hover {
+            transform: scale(1.1);
+        }
+
+        #copyButton,
+        #fontCopyButton,
+        #brCopyButton {
+            margin-top: 10px;
+            padding: 8px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #copyButton:hover,
+        #fontCopyButton:hover,
+        #brCopyButton:hover {
+            background-color: #45a049;
+        }
+
+        .edit-container,
+        .font-edit-container,
+        .br-edit-container {
+            margin-top: 20px;
+        }
+
+        .color-input {
+            margin-right: 10px;
+        }
+
+        .font-family-input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .font-size-input,
+        .br input[type="text"] {
+            width: 60px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .font-select,
+        .font-style-select,
+        .font-size-select,
+        .color-select {
+            margin-top: 10px;
+        }
+
+        .font-preview {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h2>Web Design Toolkit</h2>
+
+        <!-- Tabs -->
+        <button class="tab-button" onclick="openTab('floatTab')">Float CSS Generator</button>
+        <button class="tab-button" onclick="openTab('fontTab')">Font Family Generator</button>
+        <button class="tab-button" onclick="openTab('brTab')">Border Radius Generator</button>
+
+        <!-- Float CSS Generator Tab -->
+        <div id="floatTab" class="tab active">
+            <p>Select a float option:</p>
+            <div id="container">
+                <div class="float-option" onclick="selectFloat('left')">Float Left</div>
+                <div class="float-option" onclick="selectFloat('right')">Float Right</div>
+                <div class="float-option" onclick="selectFloat('none')">No Float</div>
+            </div>
+
+            <div id="output">Generated CSS will appear here...</div>
+
+            <div id="block1" class="block">Block 1 (floated)</div>
+            <div id="block2" class="block">Block 2 (floated)</div>
+
+            <button id="copyButton" onclick
+            ="copyCode()">Copy Code</button>
+        </div>
+
+        <!-- Font Family Generator Tab -->
+        <div id="fontTab" class="tab">
+            <p>Choose a font for your website:</p>
+            <div id="fontContainer">
+                <select id="fontSelect" class="font-select" onchange="changeFont()">
+                    <option value="Arial, sans-serif">Arial</option>
+                    <option value="Times New Roman, serif">Times New Roman</option>
+                    <option value="Verdana, sans-serif">Verdana</option>
+                    <!-- Add more fonts as needed -->
+                </select>
+
+                <select id="fontStyleSelect" class="font-style-select" onchange="changeFontStyle()">
+                    <option value="normal">Normal</option>
+                    <option value="italic">Italic</option>
+                    <option value="oblique">Oblique</option>
+                </select>
+
+                <select id="fontSizeSelect" class="font-size-select" onchange="changeFontSize()">
+                    <option value="12">12px</option>
+                    <option value="16">16px</option>
+                    <option value="20">20px</option>
+                    <!-- Add more sizes as needed -->
+                </select>
+
+                <input type="color" id="colorSelect" class="color-select" onchange="changeFontColor()" value="#000000">
+            </div>
+
+            <div id="fontOutput">Generated CSS will appear here...</div>
+
+            <button id="fontCopyButton" onclick="copyFontCode()">Copy Font Family</button>
+
+            <!-- Font Preview -->
+            <div class="font-preview">
+                <p>This is how your selected font will look:</p>
+                <p id="fontPreviewText">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </div>
+
+        <!-- Border Radius Generator Tab -->
+        <div id="brTab" class="tab">
+            <p>Adjust the border radius:</p>
+            <div class="br-container">
+                <div class="br-block" id="block"></div>
+                <div class="br-edit-container">
+                    <div class="br">
+                        <label>Top Left:</label>
+                        <input type="range" min="0" max="100" value="0">
+                        <input type="text" value="0">
+                    </div>
+                    <div class="br">
+                        <label>Top Right:</label>
+                        <input type="range" min="0" max="100" value="0">
+                        <input type="text" value="0">
+                    </div>
+                    <div class="br">
+                        <label>Bottom Left:</label>
+                        <input type="range" min="0" max="100" value="0">
+                        <input type="text" value="0">
+                    </div>
+                    <div class="br">
+                        <label>Bottom Right:</label>
+                        <input type="range" min="0" max="100" value="0">
+                        <input type="text" value="0">
+                    </div>
+                    <button id="brCopyButton" onclick="copyBRCode()">Copy Border Radius</button>
+                    <div id="brResultCode">Generated CSS will appear here...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(tabName) {
+            var tabs = document.getElementsByClassName('tab');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
+
+            var tabButtons = document.getElementsByClassName('tab-button');
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // Float CSS Generator Functions
+        function selectFloat(floatType) {
+            var outputDiv = document.getElementById('output');
+            outputDiv.textContent = 'float: ' + floatType + ';';
+
+            var block1 = document.getElementById('block1');
+            var block2 = document.getElementById('block2');
+
+            switch (floatType) {
+                case 'left':
+                    block1.style.float = 'left';
+                    block2.style.float = 'left';
+                    break;
+                case 'right':
+                    block1.style.float = 'right';
+                    block2.style.float = 'right';
+                    break;
+                default:
+                    block1.style.float = 'none';
+                    block2.style.float = 'none';
+                    break;
+            }
+        }
+
+        function copyCode() {
+            var outputDiv = document.getElementById('output');
+            var textArea = document.createElement('textarea');
+            textArea.value = '<div id="block1" class="block">Block 1 (floated)</div>\n<div id="block2" class="block">Block 2 (floated)</div>\n\n<style>\n' + outputDiv.textContent + '\n</style>';
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert('Code copied to clipboard!');
+        }
+
+        // Font Family Generator Functions
+        function changeFont() {
+            updateFontPreview();
+            updateFontOutput();
+        }
+
+        function changeFontStyle() {
+            updateFontPreview();
+            updateFontOutput();
+        }
+
+        function changeFontSize() {
+            updateFontPreview();
+            updateFontOutput();
+        }
+
+        function changeFontColor() {
+            updateFontOutput();
+        }
+
+        function updateFontPreview() {
+            var fontSelect = document.getElementById('fontSelect');
+            var fontStyleSelect = document.getElementById('fontStyleSelect');
+            var fontSizeSelect = document.getElementById('fontSizeSelect');
+            var colorSelect = document.getElementById('colorSelect');
+            var fontPreviewText = document.getElementById('fontPreviewText');
+
+            fontPreviewText.style.fontFamily = fontSelect.value;
+            fontPreviewText.style.fontStyle = fontStyleSelect.value;
+            fontPreviewText.style.fontSize = fontSizeSelect.value + 'px';
+            fontPreviewText.style.color = colorSelect.value;
+        }
+
+        function updateFontOutput() {
+            var fontSelect = document.getElementById('fontSelect');
+            var fontStyleSelect = document.getElementById('fontStyleSelect');
+            var fontSizeSelect = document.getElementById('fontSizeSelect');
+            var colorSelect = document.getElementById('colorSelect');
+            var fontOutputDiv = document.getElementById('fontOutput');
+
+            var fontFamily = fontSelect.value;
+            var fontStyle = fontStyleSelect.value;
+            var fontSize = fontSizeSelect.value + 'px';
+            var fontColor = colorSelect.value;
+
+            fontOutputDiv.textContent = `font-family: ${fontFamily};\nfont-style: ${fontStyle};\nfont-size: ${fontSize};\ncolor: ${fontColor};`;
+        }
+
+        function copyFontCode() {
+            var fontOutputDiv = document.getElementById('fontOutput');
+            var textArea = document.createElement('textarea');
+            textArea.value = fontOutputDiv.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert('Font Family code copied to clipboard!');
+        }
+
+        // Border Radius Generator Functions
+        var block = document.getElementById('block');
+        var rangeArr = document.querySelectorAll('.br input[type="range"]');
+        var textArr = document.querySelectorAll('.br input[type="text"]');
+
+        function setBR() {
+            block.style.borderRadius = "";
+            let borderRadius = "";
+
+            rangeArr.forEach(element => {
+                borderRadius += (" " + element.value.toString() + "px");
+            });
+
+            block.style.borderRadius = borderRadius;
+            document.getElementById('brResultCode').value = "border-radius:" + borderRadius + ";";
+        }
+
+        rangeArr.forEach(element => {
+            element.oninput = function (event) {
+                let range = event.target;
+                let text = range.parentElement.children[2];
+
+                text.value = range.value;
+
+                setBR();
+            };
+        });
+
+        textArr.forEach(element => {
+            element.oninput = function (event) {
+                let text = event.target;
+                let range = text.parentElement.children[1];
+
+                range.value = parseInt(text.value);
+
+                setBR();
+            };
+        });
+
+        document.getElementById('brResultCode').value = "border-radius: 0px 0px 0px 0px;";
+
+        function copyBRCode() {
+            var brResultCode = document.getElementById('brResultCode');
+            var textArea = document.createElement('textarea');
+            textArea.value = brResultCode.value;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert('Border Radius code copied to clipboard!');
+        }
+    </script>
+
+</body>
+
+</html>
