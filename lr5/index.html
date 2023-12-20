@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SHOP</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-pz5fzCBblWU0+E5QUiSTPujxRQpDWXbpt7Jfa8FqMVStFy8G6bC4i0ehZw8s6l8S+3jLUk3i8p6lyv4vpVGC5Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+<div class="container">
+    <div class="product-item">
+        <div class="q c">&lt;</div>
+        <div class="circle c new">НОВИНКА</div>
+        <div class="category c"><a href="https://rozetka.com.ua/samsung-sm-a245fzkvsek/p375225780/" >APPLE <a></div>
+        <div class="l"></div>
+        <img src="iphone.png" alt="Product 1" class="image">
+        <div class="name"><a href="https://rozetka.com.ua/apple-iphone-14-pro-max-256gb-silver/p352490835/" class="name" >IPHONE 14 PRO MAX</a></div>
+        <div class="price c" >42 580грн</div>
+        <button class="soon ">НЕЗАБАРОМ У ПРОДАЖІ</button>
+    </div>
+
+    <div class="product-item">
+        <div class="category c" ><a href="https://rozetka.com.ua/mobile-phones/c80003/producer=samsung/#search_text=samsung+телефон" >SAMSUNG<a></div>
+        <div class="l"></div>
+        <img src="samsung.png" alt="Product 2" class="image">
+        <div class="name"><a href="https://rozetka.com.ua/samsung-sm-a245fzkvsek/p375225780/" class="name" >GALAXY A24</a></div>
+        <div class="price c" >12 599грн</div>
+        <button class="add-to-cart" onclick="openQuantityModal()">У КОРЗИНУ</button>
+    </div>
+
+    <div class="product-item">
+      <div class="circle c hit">ХІТ ПРОДАЖІВ</div>
+      <div class="category c" ><a href="https://rozetka.com.ua/search/?text=google" >GOOGLE<a></div>
+      <div class="l"></div>
+      <img src="google.jpg" alt="Product 2" class="image">
+      <div class="name"><a href="https://rozetka.com.ua/386782527/p386782527/" class="name" >PIXEL 6A</a></div>
+      <div class="price c" >14515 ГРН</div>
+      <button class="add-to-cart" onclick="openQuantityModal()">У КОРЗИНУ</button>
+  </div>
+    <div class="product-item">
+        <div class="w c">&gt; </div>
+        <div class="circle c hit">ХІТ ПРОДАЖІВ</div>
+        <div class="category c"><a href="https://rozetka.com.ua/386782527/p386782527/" >АКСЕСУАРИ<a></div>
+        <div class="l"></div>
+        <img src="airshield.jpg" alt="Product 3" class="image">
+        <div class="name"><a href="https://rozetka.com.ua/colorway_cw_cssai11/p294317303/" class="name" >АКСЕСУАРИ</a></div>
+        <div class="price c" >800</div>
+        <button class="add-to-cart" onclick="openQuantityModal()">У КОРЗИНУ</button>
+    </div>
+</div>
+
+<!-- Корзина -->
+<div class="cart-icon-container" onclick="openCartModal()">
+  <i class="fas fa-shopping-cart cart-icon"></i>
+  <span id="cartItemCount">0</span>
+</div>
+
+
+<!-- Модальне вікно "Корзина пуста" -->
+<div id="emptyCartModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeCartModal()">&times;</span>
+        <p>Корзина пуста</p>
+    </div>
+</div>
+
+<!-- Модальне вікно "Вкажіть кількість" -->
+<div id="quantityModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeQuantityModal()">&times;</span>
+        <p>Вкажіть кількість:</p>
+        <input type="number" id="quantityInput" min="1" value="1">
+        <button onclick="addToCart()">Додати до корзини</button>
+    </div>
+</div>
+
+<!-- Модальне вікно "Товар додано" -->
+<div id="addedToCartModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeAddedToCartModal()">&times;</span>
+        <p>Товар додано</p>
+        <button onclick="goToCart()">Перейти у корзину</button>
+        <button onclick="closeAddedToCartModal()">Повернутись до покупок</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
