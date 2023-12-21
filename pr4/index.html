@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PR 4 JavaScript</title>
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=ВАШ_API_КЛЮЧ&callback=initMap">
+    </script>
+</head>
+<body>
+    <form>
+        <input type="button" id="watch" value="Спостерігати за мною">
+        <input type="button" id="clearWatch" value="Зупинити спостереження">
+    </form>
+    <div id="location">
+        Ваше місцезнаходження буде тут.
+    </div>
+    <div id="distance">
+        Відстань від коледжу буде тут.
+    </div>
+    <div id="map"></div>
+    <script src="script.js"></script>
+</body>
+</html>
