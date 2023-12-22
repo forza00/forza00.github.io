@@ -1,0 +1,88 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
+
+.task-manager {
+    width: 60%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    animation: fadeInUp 0.5s ease;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #f4f4f4;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    animation: fadeIn 0.5s ease;
+}
+
+li:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+li.completed {
+    background-color: #eaeaea;
+    text-decoration: line-through;
+    color: #888;
+}
+
+.delete-btn {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #ff4d4d;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.delete-btn:hover {
+    opacity: 1;
+    color: #ff1a1a;
+}
+
+.edit-input {
+    width: calc(100% - 40px);
+    padding: 15px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+}
+
+#taskInput {
+    width: calc(100% - 40px);
+    padding: 20px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+#taskInput:focus,
+.edit-input:focus,
+.delete-btn:focus {
+    outline: none;
+}
